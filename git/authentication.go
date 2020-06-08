@@ -1,18 +1,19 @@
 package git
 
 import (
+	"bufio"
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
+
+	"github.com/howeyc/gopass"
+	"gopkg.in/src-d/go-git.v4/plumbing/transport"
 	"gopkg.in/src-d/go-git.v4/plumbing/transport/http"
 	"gopkg.in/src-d/go-git.v4/plumbing/transport/ssh"
-	"gopkg.in/src-d/go-git.v4/plumbing/transport"
-	"gitlab.osram.info/osram/deployer/config"
-	"gitlab.osram.info/osram/deployer/cli_util"
-	"io/ioutil"
-	"net/url"
-	"bufio"
-	"os"
-	"fmt"
-	"strings"
-	"github.com/howeyc/gopass"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/config"
 )
 
 const HttpsType = "https"
@@ -32,10 +33,7 @@ func GetAuth(config config.Config) (transport.AuthMethod, error) {
 		if err != nil {
 			return nil, err
 		}
-		remoteUrl := strings.TrimLeft(config.RemoteUrl, "ssh://")
-		urlStruct, _ := url.Parse("https://" + remoteUrl)
-		user := urlStruct.User.Username()
-		authenticator, err = GetSshAuthentication(keyFile, user, config.SshPassPhrase)
+		authenticator, err = GetSshAuthentication(keyFile, "git", config.SshPassPhrase)
 		if err != nil {
 			return nil, err
 		}
@@ -51,7 +49,7 @@ func GetAuth(config config.Config) (transport.AuthMethod, error) {
 					return nil, InvalidUsername
 				}
 				config.HttpsUserName = input
-				linesToDelete ++
+				linesToDelete++
 			}
 			if len(config.HttpsPassword) == 0 {
 				fmt.Print("Enter Password: ")
@@ -64,7 +62,7 @@ func GetAuth(config config.Config) (transport.AuthMethod, error) {
 					return nil, InvalidPassword
 				}
 				config.HttpsPassword = input
-				linesToDelete ++
+				linesToDelete++
 			}
 		}
 		authenticator = GetHttpsAuthentication(config.HttpsUserName, config.HttpsPassword)

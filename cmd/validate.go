@@ -1,12 +1,14 @@
 package cmd
 
 import (
-	"github.com/urfave/cli"
-	"gitlab.osram.info/osram/deployer/git"
-	"gitlab.osram.info/osram/deployer/config"
 	"fmt"
+
 	"github.com/fatih/color"
-	"gitlab.osram.info/osram/deployer/cli_util"
+	"github.com/urfave/cli"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/config"
+	"github.com/fgehrlicher/deployer/git"
 )
 
 func ValidateCommand(c *cli.Context) error {

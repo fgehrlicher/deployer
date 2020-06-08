@@ -1,11 +1,11 @@
 package cli_util
 
 import (
-	"fmt"
 	"bufio"
+	"errors"
+	"fmt"
 	"os"
 	"strconv"
-	"errors"
 	"strings"
 )
 

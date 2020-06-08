@@ -66,7 +66,7 @@ func (this *TextBox) RenderBox() {
 	maxRowWidth := 5 + maxKeyLength + maxElementLength
 	fmt.Println(leftUpperCorner + strings.Repeat(verticalSideBorder, maxRowWidth) + rightUpperCorner)
 
-	for i := 0; i < len(this.Elements); i ++ {
+	for i := 0; i < len(this.Elements); i++ {
 		textBoxElement := this.Elements[i]
 		key := (*textBoxElement).displayName
 		var element string

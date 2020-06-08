@@ -1,8 +1,8 @@
 package cli_util
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -22,11 +22,11 @@ func (this Confirmation) Render() error {
 		if err != nil {
 			return err
 		}
-		input  = strings.TrimRight(input, LF)
+		input = strings.TrimRight(input, LF)
 		input = strings.TrimRight(input, CR)
-		if input == "y"|| input == "yes" {
+		if input == "y" || input == "yes" {
 			break
-		} else if input == "n"|| input == "no"{
+		} else if input == "n" || input == "no" {
 			this.Cleanup()
 			fmt.Println(LF + " aborted.")
 			os.Exit(0)

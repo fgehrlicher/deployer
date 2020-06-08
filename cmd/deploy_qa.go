@@ -1,14 +1,16 @@
 package cmd
 
 import (
-	"gitlab.osram.info/osram/deployer/cli_util"
-	"github.com/urfave/cli"
-	"gitlab.osram.info/osram/deployer/git"
-	"gitlab.osram.info/osram/deployer/ruleset"
-	"os"
-	"gitlab.osram.info/osram/deployer/semantic_version"
 	"fmt"
+	"os"
+
 	"github.com/hashicorp/go-version"
+	"github.com/urfave/cli"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/git"
+	"github.com/fgehrlicher/deployer/ruleset"
+	"github.com/fgehrlicher/deployer/semantic_version"
 )
 
 func DeployQaCommand(

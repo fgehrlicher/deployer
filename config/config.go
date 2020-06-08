@@ -1,8 +1,8 @@
 package config
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"text/tabwriter"
 )
 

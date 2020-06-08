@@ -1,11 +1,13 @@
 package semantic_version
 
 import (
-	"github.com/hashicorp/go-version"
+	"errors"
 	"fmt"
 	"sort"
-	"errors"
-	"gitlab.osram.info/osram/deployer/cli_util"
+
+	"github.com/hashicorp/go-version"
+
+	"github.com/fgehrlicher/deployer/cli_util"
 )
 
 type Version struct {
@@ -129,7 +131,7 @@ func StripIterationsOfSameVersion(collection version.Collection) version.Collect
 	for _, value := range collection {
 		rawVersion := GetSimpleVersion(value)
 		if !InSlice(rawVersion, foundVersions) {
-			returnCollection = append(returnCollection,value)
+			returnCollection = append(returnCollection, value)
 			foundVersions = append(foundVersions, rawVersion)
 		}
 	}

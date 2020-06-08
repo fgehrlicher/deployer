@@ -1,24 +1,26 @@
-FROM golang:1.11.3-alpine AS builder
+FROM golang:1.14-alpine AS builder
 LABEL maintainer="fabian.gehrlicher@outlook.de"
 
 RUN apk add --no-cache ca-certificates git curl
-RUN curl -fsSL -o /usr/local/bin/dep \
-    https://github.com/golang/dep/releases/download/v0.5.0/dep-linux-amd64 && \
-    chmod +x /usr/local/bin/dep
+WORKDIR /deployer
 
-COPY . /go/src/gitlab.osram.info/osram/deployer
-WORKDIR /go/src/gitlab.osram.info/osram/deployer
+COPY go.mod go.sum ./
+RUN go mod download
 
-RUN dep ensure
-RUN CGO_ENABLED=0 go build -o /deployer .
+COPY . .
+RUN CGO_ENABLED=0 go build .
 
 FROM alpine:3.6
 LABEL maintainer="fabian.gehrlicher@outlook.de"
 
 RUN apk --update add openssh-client git
 RUN apk --no-cache add ca-certificates && update-ca-certificates
-COPY --from=builder /deployer /deployer
 
+COPY default_known_hosts /root/.ssh/known_hosts
+ENV SSH_KNOWN_HOSTS="/root/.ssh/known_hosts"
+ENV KEY_FILE_PATH="/root/.ssh/id_rsa"
 ENV CLONE_METHOD="ssh"
+
+COPY --from=builder /deployer/deployer /deployer
 
 ENTRYPOINT ["/deployer"]

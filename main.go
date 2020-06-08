@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/fatih/color"
 	"github.com/urfave/cli"
-	"gitlab.osram.info/osram/deployer/cmd"
+	"github.com/fgehrlicher/deployer/cmd"
 	"os"
 )
 

@@ -1,12 +1,14 @@
 package ruleset
 
 import (
-	"gitlab.osram.info/osram/deployer/cli_util"
 	"fmt"
-	"github.com/hashicorp/go-version"
-	"gitlab.osram.info/osram/deployer/models"
-	"gitlab.osram.info/osram/deployer/semantic_version"
 	"strconv"
+
+	"github.com/hashicorp/go-version"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/models"
+	"github.com/fgehrlicher/deployer/semantic_version"
 )
 
 func IsValidTarget(targetName string) bool {

@@ -1,11 +1,11 @@
 package git
 
 import (
-	"os/exec"
-	"regexp"
 	"errors"
 	"os"
-	)
+	"os/exec"
+	"regexp"
+)
 
 var (
 	invalidSshAuthSocketError = errors.New("invalid SSH_AUTH_SOCK")

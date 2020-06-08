@@ -1,12 +1,14 @@
 package cmd
 
 import (
-	"gitlab.osram.info/osram/deployer/cli_util"
-	"github.com/urfave/cli"
-	"gitlab.osram.info/osram/deployer/git"
-	"gitlab.osram.info/osram/deployer/ruleset"
-	"os"
 	"fmt"
+	"os"
+
+	"github.com/urfave/cli"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/git"
+	"github.com/fgehrlicher/deployer/ruleset"
 )
 
 func DeployDevCommand(

@@ -1,9 +1,11 @@
 package ruleset
 
 import (
-	"github.com/hashicorp/go-version"
-	"gitlab.osram.info/osram/deployer/git"
 	"sort"
+
+	"github.com/hashicorp/go-version"
+
+	"github.com/fgehrlicher/deployer/git"
 )
 
 type Context struct {
@@ -24,7 +26,6 @@ func CreateContext(controller *git.Controller) (*Context, error) {
 	sort.Sort(sort.Reverse(productionTags))
 	context.GitTags.ProductionTags = productionTags
 	context.GitTags.DevelopmentTags = make(map[string]version.Collection)
-
 
 	for _, metadata := range TagMetadata {
 		metadataTags, err := controller.GetTagsByMetadata(metadata)

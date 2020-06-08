@@ -1,9 +1,10 @@
 package ruleset
 
 import (
-	"gitlab.osram.info/osram/deployer/models"
-	"gitlab.osram.info/osram/deployer/cli_util"
 	"github.com/hashicorp/go-version"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/models"
 )
 
 const DevTarget = "dev"
@@ -31,7 +32,7 @@ const DeployProdCommand = 4
 var (
 	EmptyPlaceholder        = models.NewPlaceholder("     ")
 	NotAvailablePlaceholder = models.NewPlaceholder("-")
-	PlaceholderVersion, _ = version.NewVersion("0.0.0")
+	PlaceholderVersion, _   = version.NewVersion("0.0.0")
 )
 
 var TagMetadata = []string{

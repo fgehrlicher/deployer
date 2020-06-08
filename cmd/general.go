@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/urfave/cli"
 	"runtime/debug"
+
+	"github.com/urfave/cli"
 )
 
 var (

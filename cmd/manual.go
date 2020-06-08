@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"github.com/urfave/cli"
 	"fmt"
+
+	"github.com/urfave/cli"
 )
 
 func ManualCommand(c *cli.Context) error {
@@ -17,7 +18,7 @@ func ManualCommand(c *cli.Context) error {
   ENVIRONMENT VARIABLE CONFIGURATION:
     The deployment tool is configured by environment variables. The current 
     configuration can be validated by the "validate" command.
-    e.g "`+binaryName+` validate"
+    e.g "` + binaryName + ` validate"
 
     GENERAL CONFIGURATION:
       These environment variables are always required.
@@ -72,7 +73,7 @@ func ManualCommand(c *cli.Context) error {
   DEPLOYMENT TARGET / SERVER STAGES DEFINITION
     There are three possible deployment targets used by the OSRAM workflow. These 
     deployment targets are preselectable by the "stage" flag.
-    e.g "`+binaryName+` deploy --stage dev"
+    e.g "` + binaryName + ` deploy --stage dev"
     +===============================+================================================+
     |            Target             |                   Description                  |
     +===============================+================================================+
@@ -131,7 +132,7 @@ func ManualCommand(c *cli.Context) error {
     in a new major version (major version zero "0.y.z" is for initial development,
     version 1.0.0 defines the public api). A developer deploys "Commit 3" to dev
     as first iteration of the new major version. 
-    He executes: "`+binaryName+` deploy --stage dev --type major" and selects
+    He executes: "` + binaryName + ` deploy --stage dev --type major" and selects
     "Commit 3". This results in a development server deployment and the following 
     git log:
     +---------------------------------------+
@@ -147,7 +148,7 @@ func ManualCommand(c *cli.Context) error {
     second iteration of the new major version (Note that it is not possible to
     deploy "Commit 1" or "Commit 2" to dev as seperate versions because these
     commits are already included in "1.0.0-1+dev").
-    He executes: "`+binaryName+` deploy --stage dev --latest --type increment".
+    He executes: "` + binaryName + ` deploy --stage dev --latest --type increment".
     This results in a development server deployment and the following git log:
     +----------------------------------------------------+
     | * 39ac05d - Commit 5 (origin/develop, 1.0.0-2+dev) |
@@ -161,7 +162,7 @@ func ManualCommand(c *cli.Context) error {
     severe bugs. The development team fixes these bugs and pushes "Commit 6" and
     "Commit 7" to develop. A developer deploys the latest commit (Commit 7) to dev
     as the third iteration of the new version.
-    He executes: "`+binaryName+` deploy --stage dev --latest --type increment".
+    He executes: "` + binaryName + ` deploy --stage dev --latest --type increment".
     This results in a development server deployment and the following git log:
     +----------------------------------------------------+
     | * 6737421 - Commit 7 (origin/develop, 1.0.0-3+dev) |
@@ -176,7 +177,7 @@ func ManualCommand(c *cli.Context) error {
     The testing team/person verifies that the bugs have been resolved and approves
     the new version. After the approval from the testing team/person a developer
     deploys the latest dev iteration (1.0.0-3+dev) to the qa server.
-    He executes: "`+binaryName+` deploy --stage qa --latest".
+    He executes: "` + binaryName + ` deploy --stage qa --latest".
     This results in a qa server deployment and the following git log:
     +----------------------------------------------------------------+
     | * 6737421 - Commit 7 (origin/develop, 1.0.0-3+dev, 1.0.0-3+qa) |
@@ -195,9 +196,9 @@ func ManualCommand(c *cli.Context) error {
     production release of the new version. The development team fixes this bugs,
     pushes the new commit ("Commit 8") to develop and deploys the new commit as
     new iteration to develop.
-    He executes: "`+binaryName+` deploy --stage dev --latest --type increment"
+    He executes: "` + binaryName + ` deploy --stage dev --latest --type increment"
     and after validating that the bug has been resolved on dev he executes:
-    "`+binaryName+` deploy --stage qa --latest". That results in the following 
+    "` + binaryName + ` deploy --stage qa --latest". That results in the following 
     git log:
     +----------------------------------------------------------------+
     | * 57761ba - Commit 8 (origin/develop, 1.0.0-4+dev, 1.0.0-4+qa) |
@@ -213,7 +214,7 @@ func ManualCommand(c *cli.Context) error {
     The OSRAM testing team validates that the bug has been resolved and approves
     the new version. After that final testing a developer deploys the current
     qa iteration to production.
-    He executes: "`+binaryName+` deploy --stage prod --latest". That results in
+    He executes: "` + binaryName + ` deploy --stage prod --latest". That results in
     the following git log:
     +-----------------------------------------------------------------------+
     | * 57761ba - Commit 8 (origin/develop, 1.0.0-4+dev, 1.0.0-4+qa)        |

@@ -2,18 +2,20 @@ package git
 
 import (
 	"errors"
+	"io"
+	"sort"
+	"strings"
+
 	"github.com/hashicorp/go-version"
-	"gitlab.osram.info/osram/deployer/cli_util"
-	"gitlab.osram.info/osram/deployer/config"
-	"gitlab.osram.info/osram/deployer/models"
 	"gopkg.in/src-d/go-git.v4"
 	gitConfig "gopkg.in/src-d/go-git.v4/config"
 	"gopkg.in/src-d/go-git.v4/plumbing"
 	"gopkg.in/src-d/go-git.v4/plumbing/transport"
 	"gopkg.in/src-d/go-git.v4/storage/memory"
-	"io"
-	"sort"
-	"strings"
+
+	"github.com/fgehrlicher/deployer/cli_util"
+	"github.com/fgehrlicher/deployer/config"
+	"github.com/fgehrlicher/deployer/models"
 )
 
 var (
@@ -45,7 +47,7 @@ func NewGitController() (*Controller, error) {
 	cloneOptions := &git.CloneOptions{
 		Auth:          Authenticator,
 		URL:           Config.RemoteUrl,
-		ReferenceName: "refs/heads/develop",
+		ReferenceName: "refs/heads/master",
 	}
 
 	err = controller.CloneIntoMemory(cloneOptions)
